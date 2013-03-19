@@ -1,0 +1,16 @@
+{
+  "name": "riak-river",
+  "version": "0.0.0",
+  "description": "riak-river",
+  "private":true,
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wlaurance/riak-river.git"
+  },
+  "author": "",
+  "license": "BSD"
+}
