@@ -5359,3 +5359,14 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.container-narrow {
+  margin: 0 auto;
+  max-width: 800px;
+}
+.container-narrow hr {
+  margin: 30px 0;
+}
