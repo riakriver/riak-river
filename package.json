@@ -28,6 +28,9 @@
     "mocha": "~1.8.2"
   },
   "subdomain": "wlaurance-riak-river",
+  "domains": [
+    "www.riakriver.com"
+  ],
   "engines": {
     "node": "0.8.x"
   }
