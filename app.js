@@ -40,7 +40,10 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket){
   socket.on('new subscriber', function(data){
-    console.log(data);
+    /*
+     * register new user
+     * emit success or error event to socket
+     */
   });
 });
 

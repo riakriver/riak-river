@@ -22,8 +22,9 @@ block content
       td
         input(type="text", name="email", id="email")
     tr
-      td
+      td(colspan=2)
         button.btn.btn-primary(id="submit-user-data", type="submit", value="submit") Submit
+
   script(type='text/javascript')
     var host = "#{socketio}";
     $('#submit-user-data').click(function(){
@@ -33,4 +34,19 @@ block content
       };
       var socket = io.connect(host);
       socket.emit('new subscriber', {user:params});
+      var button = $('#submit-user-data');
+      socket.on('success', function(){
+        button.attr('class', 'btn btn-success');
+        button.html("You're subscribed!");
+        setTimeout(reset, 3000);
+      });
+      socket.on('error', function(){
+        button.attr('class', 'btn btn-danger');
+        button.html("Error has occured");
+        setTimout(reset, 3000);
+      });
+      var reset = function(){
+        button.attr('class', 'btn btn-primary');
+        button.html('Submit');
+      };
     });
