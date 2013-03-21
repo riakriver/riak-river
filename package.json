@@ -1,10 +1,11 @@
 {
   "name": "riak-river",
-  "version": "0.0.0",
+  "version": "0.0.0-1",
   "description": "riak river frontend site",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
