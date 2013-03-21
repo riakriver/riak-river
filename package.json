@@ -20,7 +20,8 @@
     "jade": "~0.28.2",
     "stylus": "~0.32.1",
     "marked": "~0.2.8",
-    "socket.io": "~0.9.13"
+    "socket.io": "~0.9.13",
+    "mailchimp": "~0.9.5"
   },
   "devDependencies": {
     "should": "~1.2.2",
