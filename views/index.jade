@@ -12,16 +12,25 @@ block content
     We are currently in the Alpha stages of development and would love any potential
     users help shape the product. Sign up below to get more information and be the first
     to try out the beta.
-  form(action='/beta-preview', method="POST")
-    table
-      tr
-        td Name
-        td
-          input(type="text", name="name")
-      tr
-        td Email
-        td
-          input(type="text", name="email")
-      tr
-        td
-          button(type="submit", value="submit") Submit
+  table
+    tr
+      td Name
+      td
+        input(type="text", id="name", name="name")
+    tr
+      td Email
+      td
+        input(type="text", name="email", id="email")
+    tr
+      td
+        button.btn.btn-primary(id="submit-user-data", type="submit", value="submit") Submit
+  script(type='text/javascript')
+    var host = "#{socketio}";
+    $('#submit-user-data').click(function(){
+      var params = {
+        name: $('#name').val(),
+        email: $('#email').val()
+      };
+      var socket = io.connect(host);
+      socket.emit('new subscriber', {user:params});
+    });
