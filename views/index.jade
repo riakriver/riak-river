@@ -25,9 +25,14 @@ block content
       td Email
       td
         input(type="text", name="email", id="email")
+      td
+        div.control-group.error
+          div.controls
+            span.submit-user-data-error.help-inline
     tr
       td(colspan=2)
         button.btn.btn-primary(id="submit-user-data", type="submit", value="submit") Submit
+
 
   script(type='text/javascript')
     var host = "#{socketio}";
@@ -48,6 +53,7 @@ block content
       });
       socket.on('error', function(e){
         button.attr('class', 'btn btn-danger');
+        $('.submit-user-data-error').html(e);
         setTimeout(reset, 3000);
       });
       var reset = function(){
@@ -59,4 +65,8 @@ block content
         $('#lname').val('');
         $('#email').val('');
       };
+      /*
+       * clear any existing error messages
+       */
+      $('.submit-user-data-error').html('');
     });
