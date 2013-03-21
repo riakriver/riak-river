@@ -4,8 +4,7 @@
   "description": "riak river frontend site",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "start": "node app"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -26,5 +25,9 @@
   "devDependencies": {
     "should": "~1.2.2",
     "mocha": "~1.8.2"
+  },
+  "subdomain": "wlaurance-riak-river",
+  "engines": {
+    "node": "0.8.x"
   }
 }
