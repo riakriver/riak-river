@@ -21,7 +21,9 @@
     "stylus": "~0.32.1",
     "marked": "~0.2.8",
     "socket.io": "~0.9.13",
-    "mailchimp": "~0.9.5"
+    "mailchimp": "~0.9.5",
+    "passport": "~0.1.16",
+    "passport-github": "~0.1.3"
   },
   "devDependencies": {
     "should": "~1.2.2",
