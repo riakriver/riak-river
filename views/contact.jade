@@ -1,0 +1,32 @@
+extends layout
+block content
+  h2 Contact Us
+  - if( submitted )
+    div.alert.alert-success
+      p= "Thanks for the feedback!"
+    script(type='text/javascript')
+      setTimeout(function(){
+        window.location = "#{socketio}/contact"
+      }, 2000);
+  form(action='/contact', method='POST')
+    table
+      tr
+        td First Name
+        td
+          input(name='fname', type='text')
+      tr
+        td Last Name
+        td
+          input(name='lnanem', type='text')
+      tr
+        td Email
+        td
+          input(name='email', type='text')
+      tr
+        td Feedback
+        td
+          textarea(name='feedback')
+      tr
+        td
+          button.btn.btn-success(type='submit') Submit
+
