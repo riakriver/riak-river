@@ -1,0 +1,11 @@
+extends layout
+block content
+  - if (typeof user !== 'undefined')
+    div.accountInfo
+      ul
+        li
+          span.username= user.username
+        li
+          span.name= user.displayName
+        li
+          span.email= user.emails[0].value

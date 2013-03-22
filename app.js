@@ -42,3 +42,4 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 require('./socket.io')(app, server);
 require('./authorization')(app, passport);
+require('./routes/account')(app);
