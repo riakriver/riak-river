@@ -15,4 +15,7 @@ module.exports = function(app){
       res.render('contact', {submitted:true, options:ops, user:req.user});
     });
   });
+  app.get('/about', function(req, res){
+    res.render('about', {user:req.user});
+  });
 }
