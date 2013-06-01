@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Riak-River', user: req.user });
+  res.render('index', {user: req.user });
 };
