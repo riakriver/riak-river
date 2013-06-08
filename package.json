@@ -1,6 +1,6 @@
 {
   "name": "riak-river",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "riak river frontend site",
   "main": "app.js",
   "scripts": {
@@ -24,7 +24,8 @@
     "mailchimp": "~0.9.5",
     "passport": "~0.1.16",
     "passport-github": "~0.1.5",
-    "appygram": "~0.1.6"
+    "appygram": "~0.1.6",
+    "sitemap": "~0.6.0"
   },
   "devDependencies": {
     "should": "~1.2.2",
