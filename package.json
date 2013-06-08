@@ -1,6 +1,6 @@
 {
   "name": "riak-river",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "riak river frontend site",
   "main": "app.js",
   "scripts": {
