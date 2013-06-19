@@ -53,8 +53,9 @@ You can see some basic examples here.
   var appygram = require('appygram');
   appygram.setApiKey('api_key');
   appygram.sendFeedback({
-   first_name:'Will',
-   last_name:'Laurance',
+   name:'Will',
+   topic:'Feedback',
+   message:'I am sending an appygram!',
    email:'w.laurance@gmail.com'
   }, function(){
     //done sending feedback
