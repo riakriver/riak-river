@@ -41,7 +41,7 @@ var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-require('./socket.io')(app, server);
 require('./authorization')(app, passport);
 require('./routes/account')(app);
 require('./routes/contact')(app);
+require('./routes/subscribe')(app);

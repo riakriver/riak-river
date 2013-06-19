@@ -35,27 +35,24 @@ block content
 
 
   script(type='text/javascript')
-    var host = "#{socketio}";
     $('#submit-user-data').click(function(){
       var params = {
         fname: $('#fname').val(),
         lname: $('#lname').val(),
         email: $('#email').val()
       };
-      var socket = io.connect(host);
-      socket.emit('new subscriber', JSON.stringify(params));
       var button = $('#submit-user-data');
-      socket.on('success', function(){
+      var success = function(){
         button.attr('class', 'btn btn-success');
         button.html("You're subscribed!");
         setTimeout(reset, 3000);
         setTimeout(clear, 3000);
-      });
-      socket.on('error', function(e){
+      };
+      var error = function(e){
         button.attr('class', 'btn btn-danger');
         $('.submit-user-data-error').html(e);
         setTimeout(reset, 3000);
-      });
+      };
       var reset = function(){
         button.attr('class', 'btn btn-primary');
         button.html('Submit');
@@ -69,4 +66,8 @@ block content
        * clear any existing error messages
        */
       $('.submit-user-data-error').html('');
+
+      $.post("/subscribe", params, function(res){
+        res.error ? error(res.error) : success();
+      });
     });
