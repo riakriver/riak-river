@@ -20,7 +20,13 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.session({secret:process.env.SESSION_SECRET || 'keyboard cat'}));
+  app.use(express.session({
+    store: new (require('connect-redis')(express))({
+      ttl: 60 * 60 * 24 * 7,
+      host: process.env.RIAK_RIVER_REDIS_HOST || '127.0.0.1',
+    }),
+    secret:process.env.SESSION_SECRET || 'keyboard cat'
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
