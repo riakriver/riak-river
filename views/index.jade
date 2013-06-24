@@ -35,39 +35,41 @@ block content
 
 
   script(type='text/javascript')
-    $('#submit-user-data').click(function(){
-      var params = {
-        fname: $('#fname').val(),
-        lname: $('#lname').val(),
-        email: $('#email').val()
-      };
-      var button = $('#submit-user-data');
-      var success = function(){
-        button.attr('class', 'btn btn-success');
-        button.html("You're subscribed!");
-        setTimeout(reset, 3000);
-        setTimeout(clear, 3000);
-      };
-      var error = function(e){
-        button.attr('class', 'btn btn-danger');
-        $('.submit-user-data-error').html(e);
-        setTimeout(reset, 3000);
-      };
-      var reset = function(){
-        button.attr('class', 'btn btn-primary');
-        button.html('Submit');
-      };
-      var clear = function(){
-        $('#fname').val('');
-        $('#lname').val('');
-        $('#email').val('');
-      };
-      /*
-       * clear any existing error messages
-       */
-      $('.submit-user-data-error').html('');
+    require(['jquery'], function($){
+      $('#submit-user-data').click(function(){
+        var params = {
+          fname: $('#fname').val(),
+          lname: $('#lname').val(),
+          email: $('#email').val()
+        };
+        var button = $('#submit-user-data');
+        var success = function(){
+          button.attr('class', 'btn btn-success');
+          button.html("You're subscribed!");
+          setTimeout(reset, 3000);
+          setTimeout(clear, 3000);
+        };
+        var error = function(e){
+          button.attr('class', 'btn btn-danger');
+          $('.submit-user-data-error').html(e);
+          setTimeout(reset, 3000);
+        };
+        var reset = function(){
+          button.attr('class', 'btn btn-primary');
+          button.html('Submit');
+        };
+        var clear = function(){
+          $('#fname').val('');
+          $('#lname').val('');
+          $('#email').val('');
+        };
+        /*
+         * clear any existing error messages
+         */
+        $('.submit-user-data-error').html('');
 
-      $.post("/subscribe", params, function(res){
-        res.error ? error(res.error) : success();
+        $.post("/subscribe", params, function(res){
+          res.error ? error(res.error) : success();
+        });
       });
     });
