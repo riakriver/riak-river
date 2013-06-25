@@ -2,7 +2,9 @@ extends layout
 block content
   button.btn.btn-success(id='githublogin') Login/Sign-up with GitHub
   script(type='text/javascript')
-    $('#githublogin').click(function(){
-      window.location = "/auth/github";
+    require(['jquery'], function($){
+      $('#githublogin').click(function(){
+        window.location = "/auth/github";
+      });
     });
 
