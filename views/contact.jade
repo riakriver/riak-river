@@ -6,7 +6,7 @@ block content
       p= "Thanks for the feedback!"
     script(type='text/javascript')
       setTimeout(function(){
-        window.location = "#{socketio}/contact"
+        window.location = "/contact"
       }, 2000);
   form(action='/contact', method='POST')
     table
