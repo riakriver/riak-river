@@ -6,7 +6,11 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , passport = require('passport');
+  , passport = require('passport')
+  , requireAuthButNoRedirect = require('./middleware').requireAuthButNoRedirect
+  , fs = require('fs')
+  , coffee = require('coffee-script')
+  , _ = require('underscore');
 
 var app = express();
 
@@ -31,7 +35,7 @@ app.configure(function(){
   app.use(passport.session());
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
-  app.use(express.static(path.join(__dirname, 'public')));
+
   app.use('/jam', express.static(path.join(__dirname, 'jam')));
 });
 
@@ -44,11 +48,31 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/sitemap.xml', require('./seo/sitemap'));
 
-var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
-});
-
 require('./authorization')(app, passport);
 require('./routes/account')(app);
 require('./routes/contact')(app);
 require('./routes/subscribe')(app);
+
+/*
+ * Apply static app.use last so we can intercept the /public/javascripts/user
+ * javacripts and add authentication.
+ */
+app.get('/javascripts/user/*', function(req, res){
+  var handler = function(err, data){
+    if (err)
+      return res.send(404);
+    else {
+      res.send(coffee.compile(data.toString()));
+    }
+  };
+  var url = req.url.split('/');
+  var csPath = _.rest(url, _.indexOf(url, 'user')).join('/').replace('.js', '.coffee');
+  console.log(csPath);
+  fs.readFile('coffeescript/' + csPath, handler);
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+});
