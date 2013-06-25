@@ -68,7 +68,7 @@ app.get('/javascripts/user/*', function(req, res){
   var url = req.url.split('/');
   var csPath = _.rest(url, _.indexOf(url, 'user')).join('/').replace('.js', '.coffee');
   console.log(csPath);
-  fs.readFile('coffeescript/' + csPath, handler);
+  fs.readFile('coffee/' + csPath, handler);
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
