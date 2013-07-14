@@ -22,4 +22,13 @@ describe('no authentication required', function(){
     }
     async.each(['/', '/about', '/contact', '/login'], iterator, done);
   });
+  it('should handle bad routes', function(done){
+    var iterator = function(route, callback){
+      request(host + route, function(e,r,b){
+        r.should.have.property('statusCode', 404);
+        callback();
+      });
+    }
+    async.each(['/badroute', '/reallybad', '/dontexist/nested'], iterator, done);
+  });
 });
