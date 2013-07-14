@@ -1,4 +1,12 @@
+var started = false;
 module.exports = function(done){
-  var server = require(__dirname + '/../app');
-  server(done);
+  if (!started) {
+    var server = require(__dirname + '/../app');
+    server(function(){
+      started = true;
+      done();
+    });
+  } else {
+    done();
+  }
 }

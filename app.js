@@ -72,10 +72,10 @@ app.get('/javascripts/user/*', function(req, res){
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
   if(typeof ready === 'function') ready();
 });
 
 var ready;
-module.exports = function(done){ ready = done };
+module.exports = function(done){ ready = done; return server };
