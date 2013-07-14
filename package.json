@@ -27,7 +27,9 @@
     "sitemap": "~0.6.0",
     "connect-redis": "~1.4.5",
     "coffee-script": "~1.6.3",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "should": "~1.2.2",
+    "request": "~2.22.0"
   },
   "devDependencies": {
     "should": "~1.2.2",

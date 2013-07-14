@@ -9,3 +9,9 @@ block content
           span.name= user.displayName
         li
           span.email= user.emails[0].value
+      h4 Riak Clusters
+      - if (typeof user.clusters !== 'undefined')
+        - each cluster in user.clusters
+          h5= cluster.name
+
+      button.btn.btn-success Create new cluster
