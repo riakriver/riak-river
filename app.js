@@ -40,6 +40,7 @@ app.configure(function(){
 });
 
 app.locals.title = app.get('title');
+app.locals.env = process.env.NODE_ENV || 'dev';
 
 app.configure('development', function(){
   app.use(express.errorHandler());
