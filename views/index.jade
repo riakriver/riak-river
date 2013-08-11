@@ -2,41 +2,25 @@ extends layout
 
 block content
   :markdown
-    Riak-River is a Riak cloud hosting service for the rest of us.
-    This service provides an affordable, fast, and scalable way to get
-    started with Riak.
+    __Create and manage Riak clusters easily.__
 
-    We are currently in the Alpha stages of development and would love any potential
-    users help shape the product. Sign up below to get more information and be the first
-    to try out the beta.
-  table
-    tr
-      td First Name
-      td
-        input(type="text", id="fname", name="fname")
-    tr
-      td Last Name
-      td
-        input(type="text", id="lname", name="lname")
-    tr
-      td Email
-      td
-        input(type="text", name="email", id="email")
-      td
-        div.control-group.error
-          div.controls
-            span.submit-user-data-error.help-inline
-    tr
-      td(colspan=2)
-        button.btn.btn-primary(id="submit-user-data", type="submit", value="submit") Submit
+    Riak River gives developers the power of [Riak](http://basho.com/riak/) with a few clicks.
 
+    Sign up to recieve product updates.
+
+  input(type="text", name="email", id="email", placeholder="Email Address")
+
+  div.submit-button
+    button.btn.btn-primary(id="submit-user-data", type="submit", value="submit") Submit
+
+  div.control-group.error
+    div.controls
+      span.submit-user-data-error.help-inline
 
   script(type='text/javascript')
     require(['jquery'], function($){
       $('#submit-user-data').click(function(){
         var params = {
-          fname: $('#fname').val(),
-          lname: $('#lname').val(),
           email: $('#email').val()
         };
         var button = $('#submit-user-data');
@@ -56,8 +40,6 @@ block content
           button.html('Submit');
         };
         var clear = function(){
-          $('#fname').val('');
-          $('#lname').val('');
           $('#email').val('');
         };
         /*
