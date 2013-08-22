@@ -79,4 +79,11 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 });
 
 var ready;
-module.exports = function(done){ ready = done; return server };
+module.exports = function(done){ ready = done; return server; };
+
+var appygram = require('appygram');
+
+appygram.setApiKey('e8b568cc68f00c5d7ea14676dc2c273fdcfb3426');
+appygram.app_name = 'Riak River';
+app.use(appygram.errorHandler);
+
