@@ -25,6 +25,7 @@
     "underscore": "~1.5.2"
   },
   "devDependencies": {
-    "mocha": "~1.12.1"
+    "mocha": "~1.12.1",
+    "should": "~1.2.2"
   }
 }
