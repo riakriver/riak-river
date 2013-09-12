@@ -4,7 +4,8 @@
   "description": "Riak River Front End App",
   "main": "index.coffee",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script",
+    "start": "./node_modules/.bin/coffee index.coffee"
   },
   "repository": {
     "type": "git",
@@ -14,5 +15,13 @@
   "license": "Proprietary",
   "bugs": {
     "url": "https://github.com/wlaurance/riak-river/issues"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.3",
+    "express": "~3.4.0",
+    "jade": "~0.35.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.1"
   }
 }
