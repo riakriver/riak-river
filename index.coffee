@@ -3,15 +3,17 @@ http = require 'http'
 app = do express
 ready = undefined
 
+app.configure ->
+  @.set 'view engine', 'jade'
 
 app.get '/', (req, res) ->
-  res.send 200
+  res.render 'index'
 
+app.use express.static __dirname + '/public'
 
 port = process.env.PORT || 3000
 
 (http.createServer app).listen port, ->
-  console.log 'hi'
   ready() if ready
 
 module.exports = (done) ->
