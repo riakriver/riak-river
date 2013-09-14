@@ -3,11 +3,13 @@ html
   head
     title Riak River | Auth and Balances
     link(rel='stylesheet', href='css/bootstrap.min.css')
+    link(rel='stylesheet', href='css/main.css')
     meta(name='keywords', content='riak, hosting, cloud hosting, inexpensive, scalable, basho, distributed database')
-  body.container
-    include nav
-    block content
-    include footer
+  body
+    div.container
+      include header
+      block content
+      include footer
   script.
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-41726381-1']);
