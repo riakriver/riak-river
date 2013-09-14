@@ -1,0 +1,14 @@
+ul.nav.nav-tabs
+  if path === "/"
+    li.active
+      a(href="/") home
+  else
+    li
+      a(href="/") home
+  - for tab in navLinks
+    if path === "/" + tab
+      li.active
+        a(href="#{tab}")= tab
+    else
+      li
+        a(href="#{tab}")= tab

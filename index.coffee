@@ -5,6 +5,10 @@ ready = undefined
 
 app.configure ->
   @.set 'view engine', 'jade'
+  @.locals = require './locals'
+  @.use (req,res,next)->
+    res.locals.path = req.path
+    next()
 
 app.get '/', (req, res) ->
   res.render 'index'
