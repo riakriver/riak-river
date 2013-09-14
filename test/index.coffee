@@ -19,3 +19,18 @@ describe 'Base Routes', ->
   it 'have index at /', (done)->
     request "#{host}/", (e,r,b)-> goodHTML r, done
 
+  describe 'Contact', ->
+
+    it 'has a contact page', (done)->
+      request "#{host}/contact", (e,r,b)-> goodHTML r, done
+
+    it 'can post information to its self', (done)->
+      request.post "#{host}/contact",
+        form:
+          name: 'Will'
+          email: 'w.laurance@gmail.com'
+          message: 'I love your service. It handles my
+                    thousand node cluster like nothing else!'
+        , (e,r,b)->
+          r.statusCode.should.be.equal 200
+
