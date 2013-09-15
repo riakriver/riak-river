@@ -17,7 +17,6 @@ app.configure ->
   appygram.setApiKey 'b3cdfe0ab93467a314652f70504d19468c5de524'
   appygram.app_name = 'riak-river'
   @.use (req, res, next)->
-    console.log glog.test req.url
     if glog.test req.url
       glog req, res
     else
