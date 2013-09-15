@@ -12,4 +12,15 @@ describe 'Users', ->
       else
         done()
 
+  it 'has a login page', (done)->
+    request "#{host}/login", (e,r,b)-> goodHTML r, done
+
+  it 'can post login info to itself', (done)->
+    request.post "#{host}/login",
+      form:
+        email: 'w.laurance@gmail'
+        password: 'password'
+      , (e,r,b)->
+        r.statusCode.should.be.equal 302
+        done()
 
