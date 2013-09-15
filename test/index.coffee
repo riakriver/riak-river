@@ -35,3 +35,7 @@ describe 'Base Routes', ->
           r.statusCode.should.be.equal 302
           done()
 
+  describe 'Blog', ->
+
+    it 'has a blog', (done)->
+      request "#{host}/blog", (e,r,b)-> goodHTML r, done
