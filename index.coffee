@@ -13,7 +13,11 @@ app.configure ->
   @.use (req,res,next)->
     res.locals.path = req.path
     next()
+  @.use express.static __dirname + '/public'
   @.use app.router
+  @.use (req, res, next)->
+    res.status 404
+    res.render '404', url: req.url
   appygram.setApiKey 'b3cdfe0ab93467a314652f70504d19468c5de524'
   appygram.app_name = 'riak-river'
 
@@ -32,7 +36,6 @@ app.post '/contact', (req, res)->
 
 blog app, glog
 
-app.use express.static __dirname + '/public'
 
 port = process.env.PORT || 3000
 

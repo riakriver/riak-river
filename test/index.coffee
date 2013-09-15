@@ -39,3 +39,10 @@ describe 'Base Routes', ->
 
     it 'has a blog', (done)->
       request "#{host}/blog", (e,r,b)-> goodHTML r, done
+
+  it 'formats a nice 404 page', (done)->
+    request "#{host}/not-a-page-or-resource", (e,r,b)->
+      r.statusCode.should.be.equal 404
+      should.notEqual (r.headers['content-type'].indexOf 'text/html'), -1
+      done()
+
