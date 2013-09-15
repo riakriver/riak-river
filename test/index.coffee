@@ -32,5 +32,6 @@ describe 'Base Routes', ->
           message: 'I love your service. It handles my
                     thousand node cluster like nothing else!'
         , (e,r,b)->
-          r.statusCode.should.be.equal 200
+          r.statusCode.should.be.equal 302
+          done()
 
