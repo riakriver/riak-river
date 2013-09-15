@@ -6,12 +6,18 @@ ready = undefined
 app.configure ->
   @.set 'view engine', 'jade'
   @.locals = require './locals'
+  @.use express.bodyParser()
   @.use (req,res,next)->
     res.locals.path = req.path
     next()
 
 app.get '/', (req, res) ->
   res.render 'index'
+
+app.get '/contact', (req, res)->
+  res.render 'contact'
+
+app.post '/contact', (req, res)->
 
 app.use express.static __dirname + '/public'
 
