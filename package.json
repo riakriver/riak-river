@@ -23,7 +23,7 @@
     "request": "~2.27.0",
     "async": "~0.2.9",
     "underscore": "~1.5.2",
-    "appygram": "~0.1.7"
+    "appygram": "~0.1.9"
   },
   "devDependencies": {
     "mocha": "~1.12.1",
