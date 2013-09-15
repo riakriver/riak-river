@@ -8,10 +8,10 @@ app.configure ->
   @.set 'view engine', 'jade'
   @.locals = require './locals'
   @.use express.bodyParser()
-  @.use app.router
   @.use (req,res,next)->
     res.locals.path = req.path
     next()
+  @.use app.router
   appygram.setApiKey 'b3cdfe0ab93467a314652f70504d19468c5de524'
   appygram.app_name = 'riak-river'
 
