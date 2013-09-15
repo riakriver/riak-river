@@ -1,0 +1,10 @@
+extends layout
+block content
+  - for post in posts
+    div.post
+      p= "Title: " + post.title
+      p= "Commit: " + post.commit
+      p= "Date: " + post.date
+      div.post-contents
+        p!= post.content
+    hr
