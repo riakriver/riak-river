@@ -24,7 +24,10 @@
     "async": "~0.2.9",
     "underscore": "~1.5.2",
     "appygram": "~0.1.9",
-    "glog": "~1.4.0"
+    "glog": "~1.4.0",
+    "passport-local": "~0.1.6",
+    "passport": "~0.1.17",
+    "riak-js": "~0.10.2"
   },
   "devDependencies": {
     "mocha": "~1.12.1",

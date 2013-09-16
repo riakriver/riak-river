@@ -3,8 +3,10 @@ http = require 'http'
 app = do express
 ready = undefined
 appygram = require 'appygram'
+passport = require 'passport'
 glog = (require 'glog') "#{__dirname}/blog_repo"
 blog = require "#{__dirname}/blog"
+user = require "#{__dirname}/user"
 
 app.configure ->
   @.set 'view engine', 'jade'
@@ -35,7 +37,7 @@ app.post '/contact', (req, res)->
       appygram.sendFeedback req.body
 
 blog app, glog
-
+user app, passport
 
 port = process.env.PORT || 3000
 
