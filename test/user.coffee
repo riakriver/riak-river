@@ -31,5 +31,7 @@ describe 'Users', ->
           password: 'password'
         , (e,r,b)->
           r.statusCode.should.be.equal 302
+          r.headers.location.should.be.equal '/account'
+          r.headers['set-cookie'].should.have.property 'length', 1
           done()
 
