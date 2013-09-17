@@ -28,7 +28,8 @@ app.use (req, res, next)->
   res.render '404', url: req.url
 appygram.setApiKey 'b3cdfe0ab93467a314652f70504d19468c5de524'
 appygram.app_name = 'riak-river'
-app.use appygram.errorHandler
+if process.env.NODE_ENV?.toLowerCase() is 'production'
+  app.use appygram.errorHandler
 
 app.get '/', (req, res) ->
   res.render 'index'
