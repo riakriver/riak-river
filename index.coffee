@@ -11,11 +11,15 @@ user = require "#{__dirname}/user"
 app.configure ->
   @.set 'view engine', 'jade'
   @.locals = require './locals'
+  @.use express.cookieParser()
   @.use express.bodyParser()
   @.use (req,res,next)->
     res.locals.path = req.path
     next()
   @.use express.static __dirname + '/public'
+  @.use express.session secret: 'keyboard cat'
+  @.use passport.initialize()
+  @.use passport.session()
   @.use app.router
   @.use (req, res, next)->
     res.status 404
