@@ -20,6 +20,9 @@ app.configure ->
   @.use express.session secret: 'keyboard cat'
   @.use passport.initialize()
   @.use passport.session()
+  @.use (req, res, next)=>
+    res.locals.loggedIn = req.user?
+    next()
   @.use app.router
   @.use (req, res, next)->
     res.status 404

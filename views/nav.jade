@@ -1,3 +1,4 @@
+
 ul.nav.nav-pills.pull-right
   if path === "/"
     li.active
@@ -8,8 +9,16 @@ ul.nav.nav-pills.pull-right
   - for tab in navLinks
     if path === "/" + tab
       li.active
-        a(href="#{tab}")= tab
+        a(href="/#{tab}")= tab
     else
       li
-        a(href="#{tab}")= tab
+        a(href="/#{tab}")= tab
+  - var route = loggedIn ? "account" : "login"
+  if path === "/" + route
+    li.active
+      a(href="/#{route}")= route
+  else
+    li
+      a(href="/#{route}")= route
+
 h3.text-muted Riak River
