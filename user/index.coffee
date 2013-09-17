@@ -48,9 +48,13 @@ module.exports = (app, passport)->
       email: req.body.email
       password: secret.password
       salt: secret.salt
-      , (err)->
-        res.send err.statusCode, err if err
-        res.send 200 if not err
+      , (err, user, meta)->
+        if not err
+          req.login req.body.email, (err)->
+            res.redirect '/account'
 
   app.get '/login', (req, res)->
-    res.render 'login'
+    if req.user
+      res.redirect '/account'
+    else
+      res.render 'login'

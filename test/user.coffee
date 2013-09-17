@@ -22,7 +22,9 @@ describe 'Users', ->
           email: 'w.laurance@gmail.com'
           password: 'password'
         , (e,r,b)->
-          r.statusCode.should.be.equal 200
+          r.statusCode.should.be.equal 302
+          r.headers.location.should.be.equal '/account'
+          r.headers['set-cookie'].should.have.property 'length', 1
           done()
     it 'can post login info to itself', (done)->
       request.post "#{host}/login",
