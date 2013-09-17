@@ -37,3 +37,18 @@ describe 'Users', ->
           r.headers['set-cookie'].should.have.property 'length', 1
           done()
 
+    it 'redirects if already logged in', (done)->
+      request.post "#{host}/login",
+        form:
+          email: 'w.laurance@gmail.com'
+          password: 'password'
+      , (e,r,b)->
+        request "#{host}/login",
+          headers:
+            Cookie: r.headers['set-cookie']
+          followRedirect: no
+        , (e,r,b)->
+          r.statusCode.should.be.equal 302
+          r.headers.location.should.be.equal '/account'
+          done()
+
