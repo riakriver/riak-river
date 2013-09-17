@@ -8,27 +8,27 @@ glog = (require 'glog') "#{__dirname}/blog_repo"
 blog = require "#{__dirname}/blog"
 user = require "#{__dirname}/user"
 
-app.configure ->
-  @.set 'view engine', 'jade'
-  @.locals = require './locals'
-  @.use express.cookieParser()
-  @.use express.bodyParser()
-  @.use (req,res,next)->
-    res.locals.path = req.path
-    next()
-  @.use express.static __dirname + '/public'
-  @.use express.session secret: 'keyboard cat'
-  @.use passport.initialize()
-  @.use passport.session()
-  @.use (req, res, next)=>
-    res.locals.loggedIn = req.user?
-    next()
-  @.use app.router
-  @.use (req, res, next)->
-    res.status 404
-    res.render '404', url: req.url
-  appygram.setApiKey 'b3cdfe0ab93467a314652f70504d19468c5de524'
-  appygram.app_name = 'riak-river'
+app.set 'view engine', 'jade'
+app.locals = require './locals'
+app.use express.cookieParser()
+app.use express.bodyParser()
+app.use (req,res,next)->
+  res.locals.path = req.path
+  next()
+app.use express.static __dirname + '/public'
+app.use express.session secret: 'keyboard cat'
+app.use passport.initialize()
+app.use passport.session()
+app.use (req, res, next)=>
+  res.locals.loggedIn = req.user?
+  next()
+app.use app.router
+app.use (req, res, next)->
+  res.status 404
+  res.render '404', url: req.url
+appygram.setApiKey 'b3cdfe0ab93467a314652f70504d19468c5de524'
+appygram.app_name = 'riak-river'
+app.use appygram.errorHandler
 
 app.get '/', (req, res) ->
   res.render 'index'
