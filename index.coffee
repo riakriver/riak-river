@@ -3,17 +3,26 @@ http = require 'http'
 app = do express
 ready = undefined
 appygram = require 'appygram'
+passport = require 'passport'
 glog = (require 'glog') "#{__dirname}/blog_repo"
 blog = require "#{__dirname}/blog"
+user = require "#{__dirname}/user"
 
 app.configure ->
   @.set 'view engine', 'jade'
   @.locals = require './locals'
+  @.use express.cookieParser()
   @.use express.bodyParser()
   @.use (req,res,next)->
     res.locals.path = req.path
     next()
   @.use express.static __dirname + '/public'
+  @.use express.session secret: 'keyboard cat'
+  @.use passport.initialize()
+  @.use passport.session()
+  @.use (req, res, next)=>
+    res.locals.loggedIn = req.user?
+    next()
   @.use app.router
   @.use (req, res, next)->
     res.status 404
@@ -35,7 +44,7 @@ app.post '/contact', (req, res)->
       appygram.sendFeedback req.body
 
 blog app, glog
-
+user app, passport
 
 port = process.env.PORT || 3000
 
