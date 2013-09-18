@@ -16,6 +16,7 @@ describe 'Users', ->
     request "#{host}/login", (e,r,b)-> goodHTML r, done
 
   describe 'accounts', ->
+    cookie = undefined
     before (done)->
       request.post "#{host}/signup",
         form:
@@ -43,6 +44,7 @@ describe 'Users', ->
           email: 'w.laurance@gmail.com'
           password: 'password'
       , (e,r,b)->
+        cookie = r.headers['set-cookie']
         request "#{host}/login",
           headers:
             Cookie: r.headers['set-cookie']
@@ -52,3 +54,10 @@ describe 'Users', ->
           r.headers.location.should.be.equal '/account'
           done()
 
+    it 'has an account page', (done)->
+      request "#{host}/account",
+        headers:
+          Cookie: cookie
+        followRedirect: no
+      , (e,r,b)-> 
+        goodHTML r, done
