@@ -61,4 +61,4 @@ module.exports = (app, passport)->
       res.render 'login'
 
   app.get '/account', utils.loggedIn, (req, res)->
-    res.render 'account'
+    res.render 'account', user: req.user
