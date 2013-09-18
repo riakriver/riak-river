@@ -1,6 +1,7 @@
 LocalStrategy = (require 'passport-local').Strategy
 crypto = require 'crypto'
 riak = require "#{__dirname}/../riak"
+utils = require "#{__dirname}/utils"
 _ = require 'underscore'
 
 validPassword = (user, password)->
@@ -58,3 +59,6 @@ module.exports = (app, passport)->
       res.redirect '/account'
     else
       res.render 'login'
+
+  app.get '/account', utils.loggedIn, (req, res)->
+    res.render 'account'
