@@ -4,6 +4,8 @@ app = do express
 ready = undefined
 appygram = require 'appygram'
 passport = require 'passport'
+RiakSession = require "#{__dirname}/riak/session"
+
 glog = (require 'glog') "#{__dirname}/blog_repo"
 blog = require "#{__dirname}/blog"
 user = require "#{__dirname}/user"
@@ -16,7 +18,9 @@ app.use (req,res,next)->
   res.locals.path = req.path
   next()
 app.use express.static __dirname + '/public'
-app.use express.session secret: 'keyboard cat'
+app.use express.session
+  secret: 'keyboard cat'
+  store: new RiakSession()
 app.use passport.initialize()
 app.use passport.session()
 app.use (req, res, next)=>
