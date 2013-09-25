@@ -61,3 +61,13 @@ describe 'Users', ->
         followRedirect: no
       , (e,r,b)-> 
         goodHTML r, done
+
+    it 'has a logout route', (done)->
+      request "#{host}/logout",
+        headers:
+          Cookie: cookie
+        followRedirect: no
+      , (e,r,b)->
+        r.statusCode.should.be.equal 302
+        r.headers.location.should.be.equal '/'
+        done()

@@ -20,5 +20,8 @@ ul.nav.nav-pills.pull-right
   else
     li
       a(href="/#{route}")= route
+  if route === "account"
+    li
+      a(href="/logout") logout
 
 h3.text-muted Riak River

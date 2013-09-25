@@ -8,7 +8,11 @@ class RiakSession extends express.session.Store
     @client = riak.getSessionClient()
 
   get: (sid, cb)=>
-    @client.get @bucket, sid, cb
+    @client.get @bucket, sid, (e, s)->
+      if e
+        cb(null)
+      else
+        cb(null, s)
 
   set: (sid, session, cb)=>
     @client.save @bucket, sid, session, cb
