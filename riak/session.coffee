@@ -17,28 +17,22 @@ class RiakSession extends express.session.Store
     @client.remove @bucket, sid, cb
 
   length: (cb)=>
-    count = (values)=>
-      [values.reduce(
-        (total, value)=>
-          if isNaN(parseInt(value))
-            return total + 1
-          else
-            return total + value
-      , 0)]
-    @client.mapreduce
-      .add(@bucket)
-      .map("Riak.mapValues")
-      .reduce(count)
-      .run(cb)
+    @client.count @bucket, cb
 
   clear: (cb) =>
-    @client.mapreduce
-      .add(@bucket)
-      .map((v)-> return [v.key])
-      .run (err, keys) =>
-        if (err)
-          return cb(err)
-        async.eachLimit keys, 100, @destroy, cb
-
+    batches = 0
+    count = 0
+    stream = @client.keys @bucket, keys: 'stream'
+    stream.on 'keys', (keys)=>
+      batches++
+      async.each keys, @destroy, -> count++
+    stream.on 'end', ->
+      check = ->
+        if batches is count
+          cb()
+        else
+          setImmediate check
+      check()
+    stream.start()
 
 module.exports = RiakSession
