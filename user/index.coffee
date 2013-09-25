@@ -60,5 +60,9 @@ module.exports = (app, passport)->
     else
       res.render 'login'
 
+  app.get '/logout', (req, res)->
+    req.logout()
+    res.redirect '/'
+
   app.get '/account', utils.loggedIn, (req, res)->
     res.render 'account', user: req.user
