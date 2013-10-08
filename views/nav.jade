@@ -23,5 +23,12 @@ ul.nav.nav-pills.pull-right
   if route === "account"
     li
       a(href="/logout") logout
+  else
+    if path === "/signup"
+      li.active
+        a(href="/signup") Sign Up
+    else
+      li
+        a(href="/signup") Sign Up
 
 h3.text-muted Riak River
