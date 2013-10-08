@@ -1,0 +1,23 @@
+extends layout
+block content
+  form(role="form", method="POST")
+    div.form-group
+      label(for="email") Email:
+      input.form-control(type="email", id="email", name="email", placeholder="Enter Email")
+    div.form-group
+      label(for="password") Password:
+      input.form-control(type="password", id="password", name="password", placeholder="Enter Password")
+    div.checkbox
+      label(for="ccp") Show password
+      input(type="checkbox", id="ccp", name="ccp")
+    button.btn.btn-default(type="submit") Submit
+    script(type="text/javascript")
+      checkbox = document.getElementById("ccp");
+      checkbox.onchange = function(value, a){
+        var password = document.getElementById("password");
+        if (password.type === "password") {
+          password.type = "text";
+        } else {
+          password.type = "password";
+        }
+      }
