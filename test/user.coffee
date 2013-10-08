@@ -29,7 +29,11 @@ describe 'Users', ->
           r.statusCode.should.be.equal 302
           r.headers.location.should.be.equal '/account'
           r.headers['set-cookie'].should.have.property 'length', 1
-          done()
+          request.get "#{host}/account",
+            headers:
+              Cookie: r.headers['set-cookie']
+            followRedirect:no
+            , (e,r,b)-> goodHTML r, done
     it 'can post login info to itself', (done)->
       request.post "#{host}/login",
         form:
