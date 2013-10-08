@@ -11,13 +11,15 @@ block content
       label(for="ccp") Show password
       input(type="checkbox", id="ccp", name="ccp")
     button.btn.btn-default(type="submit") Submit
-    script(type="text/javascript")
-      checkbox = document.getElementById("ccp");
-      checkbox.onchange = function(value, a){
-        var password = document.getElementById("password");
-        if (password.type === "password") {
-          password.type = "text";
-        } else {
-          password.type = "password";
+    script(type="text/javascript").
+      (function() {
+        var checkbox = document.getElementById("ccp");
+        checkbox.onchange = function(value, a){
+          var password = document.getElementById("password");
+          if (password.type === "password") {
+            password.type = "text";
+          } else {
+            password.type = "password";
+          }
         }
-      }
+      })();

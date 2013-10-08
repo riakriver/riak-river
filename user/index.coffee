@@ -51,8 +51,11 @@ module.exports = (app, passport)->
       salt: secret.salt
       , (err, user, meta)->
         if not err
-          req.login req.body.email, (err)->
-            res.redirect '/account'
+          req.login req.body, (err)->
+            if err
+              throw err
+            else
+              res.redirect '/account'
 
   app.get '/login', utils.alreadyLoggedIn, (req, res)->
     res.render 'login'
