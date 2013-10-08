@@ -15,6 +15,9 @@ describe 'Users', ->
   it 'has a login page', (done)->
     request "#{host}/login", (e,r,b)-> goodHTML r, done
 
+  it 'has a signup page', (done)->
+    request "#{host}/signup", (e,r,b)-> goodHTML r, done
+
   describe 'accounts', ->
     cookie = undefined
     before (done)->
