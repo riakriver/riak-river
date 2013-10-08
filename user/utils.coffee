@@ -4,3 +4,8 @@ module.exports =
       next()
     else
       res.redirect '/login'
+  alreadyLoggedIn: (req, res, next)->
+    if req.user
+      res.redirect '/account'
+    else
+      next()

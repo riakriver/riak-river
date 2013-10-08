@@ -54,11 +54,11 @@ module.exports = (app, passport)->
           req.login req.body.email, (err)->
             res.redirect '/account'
 
-  app.get '/login', (req, res)->
-    if req.user
-      res.redirect '/account'
-    else
-      res.render 'login'
+  app.get '/login', utils.alreadyLoggedIn, (req, res)->
+    res.render 'login'
+
+  app.get '/signup', utils.alreadyLoggedIn, (req, res)->
+    res.render 'signup'
 
   app.get '/logout', (req, res)->
     req.logout()
