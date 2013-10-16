@@ -78,3 +78,13 @@ describe 'Users', ->
         r.statusCode.should.be.equal 302
         r.headers.location.should.be.equal '/'
         done()
+
+    it 'handles a bad login', (done)->
+      request.post "#{host}/login",
+        json:true
+        body:
+          email: 'dontusethisemail@email.com'
+          password: 'badpassword'
+        , (e,r,b)->
+          r.statusCode.should.be.equal 200
+          done()
