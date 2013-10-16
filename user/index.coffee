@@ -26,7 +26,6 @@ santizeUser = (user)->
 module.exports = (app, passport)->
   passport.use new LocalStrategy usernameField: 'email', (username, password, done)->
     riak.getClient().get 'users', username, (err, user)->
-      return done err if err
       if not user
         return done null, false, message: "#{username} not found."
       if not validPassword user, password

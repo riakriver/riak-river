@@ -86,5 +86,5 @@ describe 'Users', ->
           email: 'dontusethisemail@email.com'
           password: 'badpassword'
         , (e,r,b)->
-          r.statusCode.should.be.equal 200
+          r.statusCode.should.be.equal 302
           done()
