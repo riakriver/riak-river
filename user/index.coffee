@@ -68,3 +68,5 @@ module.exports = (app, passport)->
 
   app.get '/account', utils.loggedIn, (req, res)->
     res.render 'account', user: req.user
+
+  require(__dirname + '/clusters') app

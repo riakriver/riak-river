@@ -21,8 +21,8 @@ describe 'Clusters', ->
       else
         getCookie()
 
-  it 'should have a /account/cluster page', (done)->
-    request.get "#{host}/account/cluster",
+  it 'should have a /account/clusters page', (done)->
+    request.get "#{host}/account/clusters",
       headers:
         Cookie: cookie
       followRedirect: no
