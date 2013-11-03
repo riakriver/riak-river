@@ -1,3 +1,10 @@
 extends layout
 block content
   p Hi #{user.email}
+  - if (typeof(user.clusters) !== 'undefined')
+    h3 Clusters
+    - if (user.clusters.length > 0)
+      ul
+      - for cluster in user.clusters
+        li= cluster.id
+  a(href="/account/clusters") Create Cluster
