@@ -17,7 +17,7 @@ describe 'Clusters', ->
           done()
     request host, (e, r, b)->
       if e
-        (require __dirname + '/../index') getCookie()
+        (require __dirname + '/../index') getCookie
       else
         getCookie()
 
